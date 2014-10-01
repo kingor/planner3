@@ -8,6 +8,18 @@
         <servlet-name>SimpleServlet</servlet-name>
         <servlet-class>ru.mycompany.planner.SimpleServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Controller</servlet-name>
+        <servlet-class>ru.mycompany.planner.Controller</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeleteServlet</servlet-name>
+        <servlet-class>ru.mycompany.planner.DeleteServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CustomerTask</servlet-name>
+        <servlet-class>ru.mycompany.planner.CustomerTask</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>CustomerServlet</servlet-name>
         <url-pattern>/CustomerServlet</url-pattern>
@@ -15,6 +27,18 @@
     <servlet-mapping>
         <servlet-name>SimpleServlet</servlet-name>
         <url-pattern>/simpleservlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Controller</servlet-name>
+        <url-pattern>/Controller</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteServlet</servlet-name>
+        <url-pattern>/DeleteServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CustomerTask</servlet-name>
+        <url-pattern>/CustomerTask</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -4,13 +4,11 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Collection;
 import java.util.Iterator;
-import java.util.List;
-
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import ru.mycompany.planner.DAO.CustomerDAOImpl;
-import ru.mycompany.planner.DAO.TaskDAOImpl;
+import ru.mycompany.planner.DAO.DaoFactory;
+import ru.mycompany.planner.DAO.TaskDaoImpl;
 
 public class SimpleServlet extends HttpServlet
 {
@@ -21,7 +19,7 @@ public class SimpleServlet extends HttpServlet
       response.setContentType("text/html");
       response.setCharacterEncoding("UTF-8");
       PrintWriter printWriter = response.getWriter();
-      HibernateUtil.getSessionFactory().getCurrentSession().beginTransaction();
+
       listEvents(printWriter);
       listTask(printWriter);
     }
@@ -32,8 +30,7 @@ public class SimpleServlet extends HttpServlet
   }
   
    private void listEvents(PrintWriter out) {
-       CustomerDAOImpl cust = new CustomerDAOImpl();
-        Collection<Customer> result = cust.getAll();
+        Collection<Customer> result = DaoFactory.getCustomerDao().getAll();
         if (result.size() > 0) {
             out.println("<h2>Customers in database:</h2>");
             out.println("<table border='1'>");
@@ -53,7 +50,7 @@ public class SimpleServlet extends HttpServlet
         }
     }
    private void listTask(PrintWriter out) {
-        TaskDAOImpl tsk = new TaskDAOImpl();
+        TaskDaoImpl tsk = new TaskDaoImpl();
         Collection<Task> result = tsk.getAll();
         if (result.size() > 0) {
             out.println("<h2>Task in database:</h2>");

@@ -8,16 +8,38 @@ package ru.mycompany.planner.DAO;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import net.sf.cglib.proxy.Factory;
 import org.hibernate.Session;
 
 /**
  *
  * @author ASUP8
  */
-public interface DaoFactory {
-    public Connection getSession() throws SQLException;
+public class DaoFactory {
     
-    public CustomerDAO getCustomerDAO(Session session);
-    //public TaskDAO getTaskDAO(Session session);
+    private static DaoFactory instance = null;
+    private static CustomerDao customerDao = null;
+    private static TaskDao taskDao = null;
     
+    public static synchronized DaoFactory getInstance() {
+        if (instance == null) {
+            instance = new DaoFactory();
+        }
+        return instance;
+    }
+    
+    public static synchronized CustomerDao getCustomerDao() {
+        if (customerDao == null) {
+            customerDao = new CustomerDaoImpl();
+        }
+        return customerDao;
+    }
+    
+    public static synchronized TaskDao getTaskDao() {
+        if (taskDao == null) {
+            taskDao = new TaskDaoImpl();
+        }
+        return taskDao;
+    }
+   
 }

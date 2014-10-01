@@ -8,6 +8,6 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <a href="simpleservlet">Менеджер событий</a>
+        <%@include file="Menu.jspf" %>
     </body>
 </html>
