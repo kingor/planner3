@@ -1,6 +1,6 @@
 <%-- 
-    Document   : CustomerTask
-    Created on : 29.09.2014, 15:39:19
+    Document   : updateCustomer
+    Created on : 06.10.2014, 13:24:18
     Author     : ASUP8
 --%>
 
@@ -11,7 +11,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Обновление пользователя</title>
     </head>
     <body>
         <table valign = "top">
@@ -20,8 +20,8 @@
                     <%@include file="Menu.jspf" %>
                 </td>
                 <td valign = "top">
-                    <form method="post" name="updateCustomer" action="customerTask">
-                        Выберите пользователя для просмотра:
+                    <form method="post" name="updateCustomer" action="updateCustomer">
+                        Выберите пользователя для удаления:
                         <select name="selectCustomer" >
 
                             <% for (Customer customer : DaoFactory.getCustomerDao().getAll()) {
@@ -32,7 +32,10 @@
                             %>
                         </select>
                         <br>
-                        <input type="submit" name="submit" value="View">
+                        Новое ФИО пользователя:
+                        <input type="text" name="nameCustomer" value="">
+                        <br>
+                        <input type="submit" name="submit" value="Update">
                     </form>
                 </td>
             </tr>

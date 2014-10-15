@@ -1,44 +1,88 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.0" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
+    <filter>
+        <filter-name>EncodingFilter</filter-name>
+        <filter-class>ru.mycompany.planner.EncodingFilter</filter-class>
+        <init-param>
+            <param-name>encoding</param-name>
+            <param-value>UTF-8</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>EncodingFilter</filter-name>
+        <url-pattern>/planer/*</url-pattern>
+    </filter-mapping>
     <servlet>
-        <servlet-name>CustomerServlet</servlet-name>
-        <servlet-class>ru.mycompany.planner.CustomerServlet</servlet-class>
+        <servlet-name>Customers</servlet-name>
+        <servlet-class>ru.mycompany.planner.controller.Customers</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>SimpleServlet</servlet-name>
-        <servlet-class>ru.mycompany.planner.SimpleServlet</servlet-class>
+        <servlet-name>Manager</servlet-name>
+        <servlet-class>ru.mycompany.planner.controller.Manager</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>Controller</servlet-name>
-        <servlet-class>ru.mycompany.planner.Controller</servlet-class>
+        <servlet-name>CreateCustomer</servlet-name>
+        <servlet-class>ru.mycompany.planner.controller.CreateCustomer</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>DeleteServlet</servlet-name>
-        <servlet-class>ru.mycompany.planner.DeleteServlet</servlet-class>
+        <servlet-name>DeleteCustomer</servlet-name>
+        <servlet-class>ru.mycompany.planner.controller.DeleteCustomer</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>CustomerTask</servlet-name>
-        <servlet-class>ru.mycompany.planner.CustomerTask</servlet-class>
+        <servlet-class>ru.mycompany.planner.controller.CustomerTask</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdateCustomer</servlet-name>
+        <servlet-class>ru.mycompany.planner.controller.UpdateCustomer</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Tasks</servlet-name>
+        <servlet-class>ru.mycompany.planner.controller.Tasks</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CreateTask</servlet-name>
+        <servlet-class>ru.mycompany.planner.controller.CreateTask</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CustomerTaskByMonth</servlet-name>
+        <servlet-class>ru.mycompany.planner.controller.CustomerTaskByMonth</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>CustomerServlet</servlet-name>
-        <url-pattern>/CustomerServlet</url-pattern>
+        <servlet-name>Customers</servlet-name>
+        <url-pattern>/customers</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>SimpleServlet</servlet-name>
-        <url-pattern>/simpleservlet</url-pattern>
+        <servlet-name>Manager</servlet-name>
+        <url-pattern>/manager</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>Controller</servlet-name>
-        <url-pattern>/Controller</url-pattern>
+        <servlet-name>CreateCustomer</servlet-name>
+        <url-pattern>/createCustomer</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>DeleteServlet</servlet-name>
-        <url-pattern>/DeleteServlet</url-pattern>
+        <servlet-name>DeleteCustomer</servlet-name>
+        <url-pattern>/deleteCustomer</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>CustomerTask</servlet-name>
-        <url-pattern>/CustomerTask</url-pattern>
+        <url-pattern>/customerTask</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateCustomer</servlet-name>
+        <url-pattern>/updateCustomer</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Tasks</servlet-name>
+        <url-pattern>/tasks</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CreateTask</servlet-name>
+        <url-pattern>/createTask</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CustomerTaskByMonth</servlet-name>
+        <url-pattern>/customerTaskByMonth</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -10,6 +10,7 @@ import java.beans.*;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import ru.mycompany.planner.Customer;
 //import javax.persistence.Entity;
 //import javax.persistence.GeneratedValue;
 //import javax.persistence.Id;
@@ -24,8 +25,8 @@ import java.util.Date;
 //@Table(name="customer")
 public class Task implements Serializable{
 
-    private Long idTask;
-    private String nameTask;
+    private Long id;
+    private String name;
     private Date dateStart;
     private Date dateEnd;
     private Integer completed;
@@ -34,21 +35,21 @@ public class Task implements Serializable{
 
     }
     
-    public Long getIdTask() {
-        return idTask;
+    public Long getId() {
+        return id;
     }
     
-    public void setIdTask(Long idTask) {
-        this.idTask = idTask;
+    public void setId(Long idTask) {
+        this.id = idTask;
     }
     
 
-    public String getNameTask() {
-        return nameTask;
+    public String getName() {
+        return name;
     }
     
-    public void setNameTask(String nameTask) {
-        this.nameTask = nameTask;
+    public void setName(String name) {
+        this.name = name;
     }
     
     public Date getDateStart() {

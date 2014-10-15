@@ -12,20 +12,31 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Удаление пользователя</title>
     </head>
     <body>
-        <form method="post" name="deleteForm" action="DeleteServlet">
-            <select name="selectCustomer" >
+        <table>
+            <tr>
+                <td valign = "top">
+                    <%@include file="Menu.jspf" %>
+                </td>
+                <td valign = "top">
+                    <form method="post" name="deleteForm" action="deleteCustomer">
+                        Выберите пользователя для удаления:
+                        <select name="selectCustomer" >
 
-                <% for (Customer customer : DaoFactory.getCustomerDao().getAll()) {
-                        out.print("<option value=" + customer.getIdCustomer() + "  >");
-                        out.print(customer.getNameCustomer());
-                        out.print("</option>");
-                    }
-                %>
-            </select>
-            <input type="submit" value="Delete">
-        </form>
+                            <% for (Customer customer : DaoFactory.getCustomerDao().getAll()) {
+                                    out.print("<option value=" + customer.getId() + "  >");
+                                    out.print(customer.getName());
+                                    out.print("</option>");
+                                }
+                            %>
+                        </select>
+                        <br>
+                        <input type="submit" value="Delete">  
+                    </form>
+                </td>
+            </tr>
+        </table>
     </body>
 </html>

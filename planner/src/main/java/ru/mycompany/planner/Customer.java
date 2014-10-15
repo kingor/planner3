@@ -6,7 +6,6 @@
 
 package ru.mycompany.planner;
 
-import java.beans.*;
 import java.io.Serializable;
 //import javax.persistence.Entity;
 //import javax.persistence.GeneratedValue;
@@ -26,29 +25,31 @@ public class Customer implements Serializable{
    // @GeneratedValue(generator = "increment")
    // @GenericGenerator(name = "increment", strategy = "increment")
    // @Column(name="ID_CUSTOMER")
-    private Long idCustomer;
+    private Long id;
    // @Column(name="NAME_CUSTOMER")
-    private String nameCustomer;
+    private String name;
   
     public Customer() {
 
     }
     
-    public Long getIdCustomer() {
-        return idCustomer;
+    public Long getId() {
+        return id;
     }
     
-    public void setIdCustomer(Long idCustomer) {
-        this.idCustomer = idCustomer;
+    public void setId(Long idCustomer) {
+        this.id = idCustomer;
     }
     
 
-    public String getNameCustomer() {
-        return nameCustomer;
+    public String getName() {
+        return name;
     }
     
-    public void setNameCustomer(String nameCustomer) {
-        this.nameCustomer = nameCustomer;
+    public void setName(String nameCustomer) {
+        this.name = nameCustomer;
     }
     
 }
+
+

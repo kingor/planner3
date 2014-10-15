@@ -1,11 +1,30 @@
 <%-- any content can be specified here e.g.: --%>
 <%@ page pageEncoding="UTF-8" %>
-<a href="simpleservlet">Менеджер событий</a>
+<a href="index.jsp">Главная</a>
 <br>
-<a href="newCustomer.jsp">Новый пользователь</a>
+<a href="manager">Менеджер событий</a>
 <br>
-<a href="allCustomer.jsp">Просмотр всех пользователей</a>
+<br>
+<i><b>Работа с пользователями</b></i>
+<br>
+<a href="customers">Просмотр всех пользователей</a>
+<br>
+<a href="createCustomer.jsp">Новый пользователь</a>
+<br>
+<a href="updateCustomer.jsp">Обновление пользователя</a>
+<br>
+<a href="deleteCustomer.jsp">Удаление пользователя</a>
+<br>
+<br>
+<i><b>Работа с задачами</b></i>
+<br>
+<a href="tasks">Просмотр всех задач</a>
+<br>
+<a href="createTask.jsp">Новая задача</a>
 <br>
 <a href="deleteCustomer.jsp">Удаление пользователя</a>
 <br>
 <a href="customerTask.jsp">Просмотр задач по пользователю</a>
+<br>
+<a href="customerTaskByMonth.jsp">Просмотр задач по месяцу</a>
+<br>

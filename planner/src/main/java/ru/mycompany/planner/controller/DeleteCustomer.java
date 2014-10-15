@@ -4,14 +4,16 @@
  * and open the template in the editor.
  */
 
-package ru.mycompany.planner;
+package ru.mycompany.planner.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import ru.mycompany.planner.Customer;
 import ru.mycompany.planner.DAO.CustomerDaoImpl;
 import ru.mycompany.planner.DAO.DaoFactory;
 
@@ -19,7 +21,7 @@ import ru.mycompany.planner.DAO.DaoFactory;
  *
  * @author ASUP8
  */
-public class DeleteServlet extends HttpServlet {
+public class DeleteCustomer extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -32,30 +34,20 @@ public class DeleteServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
         Long id = null;
-        id = Long.parseLong(request.getParameter("selectCustomer"));
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-//            out.println("<!DOCTYPE html>");
-//            out.println("<html>");
-//            out.println("<head>");
-//            out.println("<title>Servlet DeleteServlet</title>");            
-//            out.println("</head>");
-//            out.println("<body>");
-            out.println("<h1>Servlet DeleteServlet at " + request.getContextPath() + "</h1>");
-            out.println(id);
+        try {
+            id = Long.parseLong(request.getParameter("selectCustomer"));
             Customer customer = null;
-            customer = (new CustomerDaoImpl()).getById(id);
-            out.println("Пользователь :" + customer.getNameCustomer() + " удален");
-            out.println("<a href=\"index.jsp\">Главная</a>");
-
+            customer = DaoFactory.getCustomerDao().read(id);
             DaoFactory.getCustomerDao().delete(customer);
-//            out.println("</body>");
-//            out.println("</html>");
-            
+            request.setAttribute("customer", customer);
+            RequestDispatcher view = request.getRequestDispatcher("viewDeleteCustomer.jsp");
+            view.forward(request, response);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
+
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

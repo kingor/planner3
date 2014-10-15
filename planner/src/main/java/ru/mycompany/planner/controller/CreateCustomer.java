@@ -3,21 +3,28 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
-package ru.mycompany.planner;
+package ru.mycompany.planner.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Collection;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import ru.mycompany.planner.Customer;
+import ru.mycompany.planner.DAO.CustomerDao;
+import ru.mycompany.planner.DAO.CustomerDaoImpl;
+import ru.mycompany.planner.DAO.DaoFactory;
 
 /**
  *
  * @author ASUP8
  */
-public class CustomerServlet extends HttpServlet {
+@WebServlet(name = "Controller", urlPatterns = {"/Controller"})
+public class CreateCustomer extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -30,18 +37,22 @@ public class CustomerServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet CustomerServlet</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet CustomerServlet at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+        String nameCustomer = null;
+        Long id = null;
+        try {
+            nameCustomer = request.getParameter("nameCustomer");
+            Customer customer = new Customer();
+            customer.setName(nameCustomer);
+            id = DaoFactory.getCustomerDao().create(customer);
+            request.setAttribute("customer", customer);
+            request.setAttribute("id", id);
+
+            request.setCharacterEncoding("UTF-8");
+            response.setCharacterEncoding("UTF-8");
+            RequestDispatcher view = request.getRequestDispatcher("viewCreateCustomer.jsp");
+            view.forward(request, response);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 

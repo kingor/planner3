@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping package="ru.mycompany.planner">
-  <class name="Task" table="task">
-    <id column="ID_TASK" name="idTask">
+  <class name="ru.mycompany.planner.Task" table="task">
+    <id column="ID_TASK" name="id">
       <generator class="increment"/>
     </id>
-    <property column="NAME_TASK" name="nameTask"/>
+    <property column="NAME_TASK" name="name"/>
     <property column="DATE_START" name="dateStart"/>
     <property column="DATE_End" name="dateEnd"/>
     <property column="COMPLETED" name="completed"/>
-    <many-to-one class="Customer" column="customer_id" name="customer"/>
+    <many-to-one class="Customer" column="customer_id" lazy="false" name="customer"/>
   </class>
 </hibernate-mapping>

@@ -4,25 +4,27 @@
  * and open the template in the editor.
  */
 
-package ru.mycompany.planner;
+package ru.mycompany.planner.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import ru.mycompany.planner.DAO.CustomerDao;
-import ru.mycompany.planner.DAO.CustomerDaoImpl;
+import org.hibernate.HibernateException;
 import ru.mycompany.planner.DAO.DaoFactory;
+import ru.mycompany.planner.Task;
 
 /**
  *
  * @author ASUP8
  */
-@WebServlet(name = "Controller", urlPatterns = {"/Controller"})
-public class Controller extends HttpServlet {
+@WebServlet(name = "Tasks", urlPatterns = {"/Tasks"})
+public class Tasks extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,27 +37,16 @@ public class Controller extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String nameCustomer = null;
-        
-        nameCustomer = request.getParameter("nameCustomer");
-        response.setContentType("text/html");
-        response.setCharacterEncoding("UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-//            out.println("<!DOCTYPE html>");
-//            out.println("<html>");
-//            out.println("<head>");
-//            out.println("<title>Servlet Controller</title>");            
-//            out.println("</head>");
-//            out.println("<body>");
-            out.println("<h1>Servlet Controller at " + request.getContextPath() + "</h1>");
-            out.println(nameCustomer);
-            Customer customer = new Customer();
-            customer.setNameCustomer(nameCustomer);
-            DaoFactory.getCustomerDao().create(customer);
-//            out.println("</body>");
-//            out.println("</html>");
+        List<Task> tasks = null;
+        try {
+            tasks = DaoFactory.getTaskDao().getAll();
+            request.setAttribute("tasks", tasks);
+            RequestDispatcher view = request.getRequestDispatcher("viewAllTask.jsp");
+            view.forward(request, response);
+        } catch (HibernateException e) {
+            e.printStackTrace();
         }
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
