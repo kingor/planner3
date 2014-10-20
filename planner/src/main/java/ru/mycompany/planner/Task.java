@@ -10,6 +10,7 @@ import java.beans.*;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import ru.mycompany.planner.Customer;
 //import javax.persistence.Entity;
 //import javax.persistence.GeneratedValue;

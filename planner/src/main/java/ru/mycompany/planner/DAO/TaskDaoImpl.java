@@ -6,8 +6,10 @@
 package ru.mycompany.planner.DAO;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import static java.util.Calendar.DAY_OF_MONTH;
 import java.util.Collection;
+import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
 import org.hibernate.HibernateException;
@@ -104,18 +106,22 @@ public class TaskDaoImpl implements TaskDao {
     public List<Task> getByCustomerMonth(Customer customer, Integer month) {
         Session session = null;
         List<Task> tasks = new ArrayList<Task>();
-        GregorianCalendar monthStart = new GregorianCalendar(2014, month, 1);
-        GregorianCalendar monthEnd = new GregorianCalendar(2014, month, monthStart.getMaximum(DAY_OF_MONTH));
+        GregorianCalendar monthStart = new GregorianCalendar(2014, month-1, 01);
+        GregorianCalendar monthEnd = new GregorianCalendar(2014, month-1, monthStart.getMaximum(DAY_OF_MONTH));
+        Date ms = monthStart.getTime();
+        Date me = monthEnd.getTime();
+        System.out.println(ms + "!!!!!!!!!!!!!!!!!!!!!!!!");
+        System.out.println(me + "!!!!!!!!!!!!!!!!!!!!!!!!");
         try {
             session = HibernateUtil.getSessionFactory().openSession();
             session.beginTransaction();
             tasks = session.createCriteria(Task.class)
                     .add(Restrictions.eq("customer", customer))
-                    .add(Restrictions.ge("dateStart", new GregorianCalendar(2014, 01, 20)))
-                    /*.add(Restrictions.ge("dateEnd", monthEnd))*/.list();
+                    .add(Restrictions.le("dateStart", me))
+                    .add(Restrictions.ge("dateEnd", ms)).list();
             session.getTransaction().commit();
         } catch (Exception e) {
-            e.printStackTrace(System.out);
+            e.printStackTrace();
         } finally {
             if (session != null && session.isOpen()) {
                 session.close();

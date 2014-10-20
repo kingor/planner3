@@ -36,6 +36,7 @@ public class CustomerTaskByMonth extends HttpServlet {
             throws ServletException, IOException {
         Long id = null;
         Integer month = null;
+        String[] monthName = {"Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"};
         try {
             id = Long.parseLong(request.getParameter("selectCustomer"));
             month = Integer.parseInt(request.getParameter("selectMonth"));
@@ -44,7 +45,8 @@ public class CustomerTaskByMonth extends HttpServlet {
             Collection<Task> taskList = DaoFactory.getTaskDao().getByCustomerMonth(customer, month);
             request.setAttribute("customer", customer);
             request.setAttribute("tasks", taskList);
-            RequestDispatcher view = request.getRequestDispatcher("viewCustomerTask.jsp");
+            request.setAttribute("month", month);
+            RequestDispatcher view = request.getRequestDispatcher("viewCustomerTaskByMonth.jsp");
             view.forward(request, response);
         } catch (IOException e) {
             e.printStackTrace();
